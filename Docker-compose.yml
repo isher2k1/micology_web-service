@@ -1,0 +1,14 @@
+version: "3.9"
+services:
+  flask:
+    build: .
+    environment:
+      - FLASK_APP=hello
+      - FLASK_DEBUG=1
+      - PYTHONUNBUFFERED=True
+    command: gunicorn -b 0.0.0.0:5000 hello:app --reload
+    
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./:/root
